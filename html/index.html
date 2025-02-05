@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>競走馬タイム指数ツール</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            padding: 5px;
+            width: 200px;
+            margin-right: 10px;
+        }
+        input[type="submit"] {
+            padding: 5px 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        #status-message {
+            margin-top: 20px;
+            font-weight: bold;
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <h1>競馬分析ツール</h1>
+    
+    <form action="/run-python" method="POST">
+        <label for="horse-name">馬名で検索: </label>
+        <input type="text" id="inputText" name="inputText" required placeholder="馬名を入力">
+        <input type="submit" value="検索">
+        <button type="submit">Pythonを実行</button>
+    </form>
+
+    <!-- 検索中のステータスメッセージ -->
+    <div id="status-message"></div>
+
+    <!-- 結果を表示するテーブル -->
+    <table id="results-table">
+        <thead>
+            <tr>
+                <th>日付</th>
+                <th>競馬場</th>
+                <th>レース名</th>
+                <th>着順</th>
+                <th>芝/ダート</th>
+                <th>距離</th>
+                <th>一着馬名</th>
+                <th>一着単勝配当aああ</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- 検索結果がここに表示されます -->
+        </tbody>
+    </table>
+
+    <script>
+        document.getElementById("runPython").addEventListener("click", function() {
+            fetch("/run-python")
+            .then(response => response.text());
+            })
+            .catch(error => console.error("Error:", error));
+        });
+    </script>
+
+</body>
+</html>

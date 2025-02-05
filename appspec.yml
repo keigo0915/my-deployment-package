@@ -1,0 +1,19 @@
+echo 'version: 0.0
+os: linux
+files:
+  - source: html/
+    destination: /var/www/html
+permissions:
+  - object: /var/www/html
+    owner: apache
+    group: apache
+hooks:
+  ApplicationStop:
+    - location: scripts/stop_apache.sh
+      timeout: 300
+      runas: root
+  ApplicationStart:
+    - location: scripts/start_apache.sh
+      timeout: 300
+      runas: root' > /home/keiba/my-deployment-package/appspec.yml
+
