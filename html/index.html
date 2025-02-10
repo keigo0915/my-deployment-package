@@ -3,84 +3,193 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>競走馬タイム指数ツール</title>
+    <title>Racetrack Analyzer</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #ffe4b5; /* Light goldenrod background */
+            color: #333333; /* Dark text color */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         h1 {
             text-align: center;
+            color: #ff6347; /* Tomato color for the title */
+            margin-top: 20px;
+            font-size: 3em;
+            text-shadow: 2px 2px #ffa07a; /* Light salmon shadow */
         }
         form {
             margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            background-color: #fffacd; /* Lemon chiffon background */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         }
         input[type="text"] {
-            padding: 5px;
-            width: 200px;
-            margin-right: 10px;
+            padding: 10px;
+            width: 250px;
+            margin: 10px;
+            border-radius: 5px;
+            border: 2px solid #ff6347; /* Tomato border */
+            background-color: #ffe4e1; /* Misty rose background */
+            font-size: 1.2em;
         }
-        input[type="submit"] {
-            padding: 5px 10px;
+        input[type="submit"], button {
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #ff6347;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        input[type="submit"]:hover, button:hover {
+            background-color: #e5533a; /* Darker tomato shade on hover */
         }
         table {
-            width: 100%;
+            width: 90%;
+            max-width: 1200px;
             border-collapse: collapse;
             margin-top: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            background-color: #fffacd; /* Lemon chiffon background */
+            border-radius: 10px;
+            overflow: hidden;
         }
         th, td {
             border: 1px solid #ddd;
-            padding: 8px;
+            padding: 12px;
+            text-align: center;
+            color: #333333;
+            font-size: 1.1em;
         }
         th {
-            background-color: #f2f2f2;
-            color: red; /* This line sets the column headers' text color to red */
+            background-color: #ff6347;
+            color: #ffffff;
+            font-size: 1.2em;
+        }
+        tr:nth-child(even) {
+            background-color: #ffebcd; /* Blanched almond background */
+        }
+        tr:nth-child(odd) {
+            background-color: #ffe4b5; /* Light goldenrod background */
         }
         #status-message {
             margin-top: 20px;
             font-weight: bold;
-            color: blue;
+            color: #ff6347; /* Tomato color for the status message */
+        }
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            background-color: #fffacd; /* Lemon chiffon background */
+            margin: 20px 0;
         }
     </style>
 </head>
 <body>
-    <h1>競馬分析ツール</h1>
-    
-    <form action="/run-python" method="POST">
-        <label for="horse-name">馬名で検索: </label>
-        <input type="text" id="inputText" name="inputText" required placeholder="馬名を入力">
-        <input type="submit" value="検索">
-        <button type="submit">Pythonを実行</button>
-    </form>
+    <div class="container">
+        <h1>Racetrack Analyzer</h1>
+        
+        <form action="/run-python" method="POST">
+            <label for="horse-name">馬名で検索: </label>
+            <input type="text" id="inputText" name="inputText" required placeholder="馬名を入力">
+            <input type="submit" value="検索">
+            <button type="submit">Pythonを実行</button>
+        </form>
 
-    <!-- 検索中のステータスメッセージ -->
-    <div id="status-message"></div>
+        <!-- 検索中のステータスメッセージ -->
+        <div id="status-message"></div>
 
-    <!-- 結果を表示するテーブル -->
-    <table id="results-table">
-        <thead>
-            <tr>
-                <th>日付</th>
-                <th>競馬場</th>
-                <th>レース名</th>
-                <th>着順</th>
-                <th>芝/ダート</th>
-                <th>距離</th>
-                <th>一着馬名</th>
-                <th>一着単勝配当</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- 検索結果がここに表示されます -->
-        </tbody>
-    </table>
+        <!-- 結果を表示するテーブル -->
+        <table id="results-table">
+            <thead>
+                <tr>
+                    <th>日付</th>
+                    <th>競馬場</th>
+                    <th>レース名</th>
+                    <th>着順</th>
+                    <th>芝/ダート</th>
+                    <th>距離</th>
+                    <th>一着馬名</th>
+                    <th>一着単勝配当</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>2025-03-20</td>
+                    <td>東京競馬場</td>
+                    <td>春のダービー</td>
+                    <td>1</td>
+                    <td>芝</td>
+                    <td>2400m</td>
+                    <td>サクラハナビ</td>
+                    <td>5.0倍</td>
+                </tr>
+                <tr>
+                    <td>2025-03-27</td>
+                    <td>中山競馬場</td>
+                    <td>桜花賞</td>
+                    <td>2</td>
+                    <td>ダート</td>
+                    <td>1600m</td>
+                    <td>フジヤマタカラ</td>
+                    <td>3.5倍</td>
+                </tr>
+                <tr>
+                    <td>2025-04-03</td>
+                    <td>阪神競馬場</td>
+                    <td>天皇賞</td>
+                    <td>3</td>
+                    <td>芝</td>
+                    <td>3200m</td>
+                    <td>ミツバチ</td>
+                    <td>4.0倍</td>
+                </tr>
+                <tr>
+                    <td>2025-04-10</td>
+                    <td>京都競馬場</td>
+                    <td>菊花賞</td>
+                    <td>4</td>
+                    <td>ダート</td>
+                    <td>3000m</td>
+                    <td>タケノコ</td>
+                    <td>6.0倍</td>
+                </tr>
+                <tr>
+                    <td>2025-04-17</td>
+                    <td>小倉競馬場</td>
+                    <td>北九州記念</td>
+                    <td>5</td>
+                    <td>芝</td>
+                    <td>1800m</td>
+                    <td>ハルウララ</td>
+                    <td>7.0倍</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
     <script>
         document.getElementById("runPython").addEventListener("click", function() {
             fetch("/run-python")
-            .then(response => response.text());
-            })
+            .then(response => response.text())
             .catch(error => console.error("Error:", error));
         });
     </script>
 
 </body>
+</html>
